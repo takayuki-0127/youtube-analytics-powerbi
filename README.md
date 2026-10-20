@@ -31,8 +31,20 @@
 
 ## フォルダ
 - `sql/`：整形ビュー、クエリ3本、上位5本の RANK クエリ
-- `python/`：pandas で再現したノートブック
+- `python/`：pandas で再現したノートブック、サンプルで動く `try_sample.py`
+- `data/sample/`：集計済みの小さいサンプル（日別93日分・動画40本）
 - `docs/`：答え合わせのメモ、SQL と pandas の対応表
 - `images/`：Power BI と pandas の画面
 
-元の CSV は入れていません。
+元の CSV は入れていません（代わりに `data/sample/` に集計済みの小さいサンプルを置いています）。
+
+## 再現の手順
+### サンプルで試す（3行・SQL Server も Power BI も不要）
+1. `pip install pandas`
+2. リポジトリのいちばん上のフォルダで `python python/try_sample.py`
+3. 10/14 の7日移動平均 602.29（SQL・Power BI・pandas で一致した値）と、種類ごとの視聴回数の中央値が表示される
+
+### 元のデータで再現する（YouTube Studio の CSV が手元にある場合）
+1. SQL：SQL Server にテーブルを取り込み、`sql/01_views.sql`（整形ビュー）→ `sql/02_moving_avg.sql`（7日移動平均）→ `sql/03_weekly_shorts_vs_long.sql`・`sql/04_first7days.sql`・`sql/08_first7days_rank.sql` の順に実行
+2. Power BI：同じ CSV を Power Query で読み、日付テーブルと DAX の7日移動平均で `images/` と同じページを作る（.pbix はリポジトリに入れていない）
+3. pandas：`python/youtube_ma7.ipynb` の CSV のパスを自分のファイルに合わせて上から実行し、SQL・Power BI と同じ数字になるかを確かめる
