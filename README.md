@@ -1,5 +1,9 @@
 # YouTube チャンネル分析（SQL Server × Power BI × pandas）
 
+- **何を**：自分の YouTube チャンネル（2026/7/14〜10/14・342本）で、Shorts と長尺の見られ方の違いを調べた
+- **どう**：同じ集計（7日移動平均・種類別の上位5本など）を SQL Server・Power BI・pandas の3つで出し、数字が一致することを確かめた
+- **結果**：1本あたりの視聴回数は Shorts 157.4回・長尺 32.4回。Shorts は公開当日に伸びて止まり、長尺は2日目以降に少しずつ伸びる。続き（データマート化と回帰）は [youtube-data-mart](https://github.com/takayuki-0127/youtube-data-mart)
+
 自分で運営している睡眠用BGMチャンネルの YouTube Studio データ（2026/7/14〜10/14、動画342本）を、SQL Server・Power BI・pandas の3つで分析しました。
 
 ## わかったこと
